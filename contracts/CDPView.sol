@@ -3,7 +3,7 @@
 pragma solidity ^0.8.0;
 
 /* Interfaces */
-interface MCD {
+interface CDPManager {
     function ilks(uint) external view returns (bytes32);
 
     function owns(uint) external view returns (address);
@@ -15,7 +15,7 @@ interface DSProxy {
     function owner() external view returns (address);
 }
 
-interface MCDVat {
+interface Vat {
     function urns(bytes32, address) external view returns (uint256, uint256);
 
     function ilks(
@@ -34,21 +34,21 @@ contract CDPView {
         uint256 adjustedDebt;
     }
 
-    MCD mcd;
-    MCDVat mcdVat;
+    CDPManager public cdpManager;
+    Vat public vat;
 
-    constructor(address mcdAddr, address mcdVatAddr) {
-        mcd = MCD(mcdAddr);
-        mcdVat = MCDVat(mcdVatAddr);
+    constructor(address cdpManagerAddr, address vatAddr) {
+        cdpManager = CDPManager(cdpManagerAddr);
+        vat = Vat(vatAddr);
     }
 
     function getCdpInfo(
         uint256 _cdpId
     ) external view returns (Information memory) {
         // Get the CDP information from the MCD contract
-        bytes32 ilk = mcd.ilks(_cdpId);
-        address owner = mcd.owns(_cdpId);
-        address urn = mcd.urns(_cdpId);
+        bytes32 ilk = cdpManager.ilks(_cdpId);
+        address owner = cdpManager.owns(_cdpId);
+        address urn = cdpManager.urns(_cdpId);
 
         // Determine the user address, if none use the zero address
         address userAddr = address(0);
@@ -57,10 +57,10 @@ contract CDPView {
         } catch {}
 
         // Get collateral and debt of the CDP from the MCD Vat contract
-        (uint256 collateral, uint256 debt) = mcdVat.urns(ilk, urn);
+        (uint256 collateral, uint256 debt) = vat.urns(ilk, urn);
 
         // Get the rate MCD Vat contract and calculate the adjusted debt
-        (, uint256 rate, , , ) = mcdVat.ilks(ilk);
+        (, uint256 rate, , , ) = vat.ilks(ilk);
         uint256 adjustedDebt = rate * debt;
 
         // Store information in a struct and return it
@@ -81,5 +81,9 @@ contract CDPView {
     ) external view returns (address userAddr) {
         DSProxy proxy = DSProxy(owner);
         userAddr = proxy.owner();
+    }
+
+    function getCdpManager() external view returns (address) {
+        return address(cdpManager);
     }
 }

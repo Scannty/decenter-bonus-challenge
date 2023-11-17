@@ -3,12 +3,8 @@ require('hardhat-deploy')
 require('dotenv').config()
 
 module.exports = {
-  solidity: "0.8.19",
-  networks: {
-    hardhat: {},
-    forkedMainnet: {
-      url: process.env.INFURA_KEY
-    }
+  solidity: {
+    compilers: [{ version: "0.8.19" }, { version: "0.5.12" }]
   },
   namedAccounts: {
     deployer: { default: 0 },
