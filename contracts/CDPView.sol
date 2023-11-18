@@ -25,6 +25,10 @@ interface Vat {
     ) external view returns (uint256, uint256, uint256, uint256, uint256);
 }
 
+/**
+ * @title CDPView Contract
+ * @dev This contract provides view functions to retrieve information about MakerDAO's CDPs.
+ */
 contract CDPView is DSMath {
     struct Information {
         bytes32 ilk;
@@ -39,11 +43,21 @@ contract CDPView is DSMath {
     CDPManager public cdpManager;
     Vat public vat;
 
+    /**
+     * @dev Constructor to set the addresses of CDPManager and Vat contracts
+     * @param cdpManagerAddr Address of the CDPManager contract
+     * @param vatAddr Address of the Vat contract
+     */
     constructor(address cdpManagerAddr, address vatAddr) {
         cdpManager = CDPManager(cdpManagerAddr);
         vat = Vat(vatAddr);
     }
 
+    /**
+     * @dev Retrieves detailed information about a CDP based on its ID
+     * @param _cdpId The ID of the CDP to query
+     * @return info Information struct containing details about the CDP
+     */
     function getCdpInfo(
         uint256 _cdpId
     ) external view returns (Information memory) {
@@ -78,6 +92,11 @@ contract CDPView is DSMath {
         return info;
     }
 
+    /**
+     * @dev Gets the owner of a DSProxy contract
+     * @param owner The address of the DSProxy contract owner
+     * @return userAddr The address of the DSProxy owner
+     */
     function _getProxyOwner(
         address owner
     ) external view returns (address userAddr) {
@@ -85,10 +104,18 @@ contract CDPView is DSMath {
         userAddr = proxy.owner();
     }
 
+    /**
+     * @dev Returns the address of the CDPManager contract
+     * @return The address of the CDPManager contract
+     */
     function getCdpManager() external view returns (address) {
         return address(cdpManager);
     }
 
+    /**
+     * @dev Returns the address of the Vat contract
+     * @return The address of the Vat contract
+     */
     function getVat() external view returns (address) {
         return address(vat);
     }
