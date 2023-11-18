@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
 /* Interfaces */
@@ -45,7 +43,7 @@ contract CDPView {
     function getCdpInfo(
         uint256 _cdpId
     ) external view returns (Information memory) {
-        // Get the CDP information from the MCD contract
+        // Get the CDP information from the CDP manager contract
         bytes32 ilk = cdpManager.ilks(_cdpId);
         address owner = cdpManager.owns(_cdpId);
         address urn = cdpManager.urns(_cdpId);
@@ -56,7 +54,7 @@ contract CDPView {
             userAddr = user;
         } catch {}
 
-        // Get collateral and debt of the CDP from the MCD Vat contract
+        // Get collateral and debt of the CDP from the Vat contract
         (uint256 collateral, uint256 debt) = vat.urns(ilk, urn);
 
         // Get the rate MCD Vat contract and calculate the adjusted debt
@@ -85,5 +83,9 @@ contract CDPView {
 
     function getCdpManager() external view returns (address) {
         return address(cdpManager);
+    }
+
+    function getVat() external view returns (address) {
+        return address(vat);
     }
 }

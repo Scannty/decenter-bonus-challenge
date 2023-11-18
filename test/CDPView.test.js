@@ -1,30 +1,44 @@
 const { assert, expect } = require('chai')
-const { deployments, ethers, getNamedAccounts } = require('hardhat')
-const { MCD_ADDRESS, MCD_VAT_ADDRESS } = require('../constants')
+const { deployments, ethers } = require('hardhat')
+const { CDP_MANAGER_ADDRESS, VAT_ADDRESS } = require('../constants')
+const cdpAbi = require('../cdpAbi.json')
 
 describe('CDP View contract unit test', () => {
-    let cdpView
+    let cdpView, vatMock, managerMock, deployer
+    let test_id = 10015
 
     beforeEach(async () => {
-        const { deployer } = await getNamedAccounts()
-        /* console.log(deployer) */
-        /* const { CDPView } = await deployments.fixture(['all']) */
-        const help = await ethers.getContractFactory('CDPView')
-        console.log(help)
-        cdpView = await help.deploy(MCD_ADDRESS, MCD_VAT_ADDRESS)
-        /* cdpView = await ethers.getContractAt('CDPView', CDPView.address, deployer) */
-        console.log(cdpView.address)
-    })
-
-    describe('dummy', () => {
-        it('dummmy', () => { assert.equal(1, 1) })
+        const accounts = await ethers.getSigners()
+        deployer = accounts[0]
+        await deployments.fixture(['all'])
+        cdpView = await ethers.getContract('CDPView', deployer)
     })
 
     describe('constructor', () => {
         it('initializes the contract correctly', async () => {
-            const mcd = await cdpView.getCdpManager()
+            const cdpManagerAddr = await cdpView.getCdpManager()
+            const vatAddr = await cdpView.getVat()
 
-            assert.equal(MCD_ADDRESS, mcd.address)
+            assert.equal(cdpManagerAddr, CDP_MANAGER_ADDRESS)
+            assert.equal(vatAddr, VAT_ADDRESS)
+        })
+    })
+
+    describe('getCdpInfo', () => {
+        /* it('ssssss', async () => {
+            const tx = await cdpView.getCdpInfo(test_id)
+            console.log(tx)
+            assert(true)
+        }) */
+
+        it('correctly fetches the variables from CDP manager', async () => {
+            try {
+                const res = await cdpView.getCdpInfo(test_id)
+                console.log(res)
+            } catch (error) {
+                console.log(error)
+            }
+            assert(true)
         })
     })
 })

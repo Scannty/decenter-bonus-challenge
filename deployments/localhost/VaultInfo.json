@@ -1,0 +1,145 @@
+{
+  "address": "0xa85EffB2658CFd81e0B1AaD4f2364CdBCd89F3a1",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "_getProxyOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "userAddr",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_cdpId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCdpInfo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "urn",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "userAddr",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ilk",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "collateral",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "debt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "testManager",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x1c1be0de9ee25e82352a6ecfe1cead75cc6c989ea1f2c9f7e82d6449e46e5175",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0xa85EffB2658CFd81e0B1AaD4f2364CdBCd89F3a1",
+    "transactionIndex": 0,
+    "gasUsed": "564462",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x853d5368b897345b6d9566f2aef6b41a2f58a3d79f900853abbd4cad46ef67de",
+    "transactionHash": "0x1c1be0de9ee25e82352a6ecfe1cead75cc6c989ea1f2c9f7e82d6449e46e5175",
+    "logs": [],
+    "blockNumber": 18000001,
+    "cumulativeGasUsed": "564462",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "b039c8442d84a9cccf33d2de1a9ab3f7",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"_getProxyOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"userAddr\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_cdpId\",\"type\":\"uint256\"}],\"name\":\"getCdpInfo\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"urn\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"userAddr\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"ilk\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"collateral\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"debt\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"testManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/CDPView.sol\":\"VaultInfo\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/CDPView.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\n\\r\\npragma solidity ^0.8.0;\\r\\n\\r\\ncontract DSMath {\\r\\n    function add(uint x, uint y) internal pure returns (uint z) {\\r\\n        require((z = x + y) >= x);\\r\\n    }\\r\\n\\r\\n    function sub(uint x, uint y) internal pure returns (uint z) {\\r\\n        require((z = x - y) <= x);\\r\\n    }\\r\\n\\r\\n    function mul(uint x, uint y) internal pure returns (uint z) {\\r\\n        require(y == 0 || (z = x * y) / y == x);\\r\\n    }\\r\\n\\r\\n    function min(uint x, uint y) internal pure returns (uint z) {\\r\\n        return x <= y ? x : y;\\r\\n    }\\r\\n\\r\\n    function max(uint x, uint y) internal pure returns (uint z) {\\r\\n        return x >= y ? x : y;\\r\\n    }\\r\\n\\r\\n    function imin(int x, int y) internal pure returns (int z) {\\r\\n        return x <= y ? x : y;\\r\\n    }\\r\\n\\r\\n    function imax(int x, int y) internal pure returns (int z) {\\r\\n        return x >= y ? x : y;\\r\\n    }\\r\\n\\r\\n    uint constant WAD = 10 ** 18;\\r\\n    uint constant RAY = 10 ** 27;\\r\\n\\r\\n    function wmul(uint x, uint y) internal pure returns (uint z) {\\r\\n        z = add(mul(x, y), WAD / 2) / WAD;\\r\\n    }\\r\\n\\r\\n    function rmul(uint x, uint y) internal pure returns (uint z) {\\r\\n        z = add(mul(x, y), RAY / 2) / RAY;\\r\\n    }\\r\\n\\r\\n    function wdiv(uint x, uint y) internal pure returns (uint z) {\\r\\n        z = add(mul(x, WAD), y / 2) / y;\\r\\n    }\\r\\n\\r\\n    function rdiv(uint x, uint y) internal pure returns (uint z) {\\r\\n        z = add(mul(x, RAY), y / 2) / y;\\r\\n    }\\r\\n\\r\\n    function rpow(uint x, uint n) internal pure returns (uint z) {\\r\\n        z = n % 2 != 0 ? x : RAY;\\r\\n\\r\\n        for (n /= 2; n != 0; n /= 2) {\\r\\n            x = rmul(x, x);\\r\\n\\r\\n            if (n % 2 != 0) {\\r\\n                z = rmul(z, x);\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\ncontract Vat {\\r\\n    struct Urn {\\r\\n        uint256 ink;\\r\\n        uint256 art;\\r\\n    }\\r\\n\\r\\n    struct Ilk {\\r\\n        uint256 Art;\\r\\n        uint256 rate;\\r\\n        uint256 spot;\\r\\n        uint256 line;\\r\\n        uint256 dust;\\r\\n    }\\r\\n\\r\\n    mapping(bytes32 => mapping(address => Urn)) public urns;\\r\\n    mapping(bytes32 => Ilk) public ilks;\\r\\n}\\r\\n\\r\\nabstract contract Manager {\\r\\n    function ilks(uint) public view virtual returns (bytes32);\\r\\n\\r\\n    function owns(uint) public view virtual returns (address);\\r\\n\\r\\n    function urns(uint) public view virtual returns (address);\\r\\n}\\r\\n\\r\\nabstract contract DSProxy {\\r\\n    function owner() public view virtual returns (address);\\r\\n}\\r\\n\\r\\ncontract VaultInfo is DSMath {\\r\\n    Manager manager = Manager(0x5ef30b9986345249bc32d8928B7ee64DE9435E39);\\r\\n    Vat vat = Vat(0x35D1b3F3D7966A1DFe207aa4514C12a259A0492B);\\r\\n\\r\\n    function _getProxyOwner(\\r\\n        address owner\\r\\n    ) external view returns (address userAddr) {\\r\\n        DSProxy proxy = DSProxy(owner);\\r\\n        userAddr = proxy.owner();\\r\\n    }\\r\\n\\r\\n    function testManager() public view returns (address) {\\r\\n        return manager.owns(10015);\\r\\n    }\\r\\n\\r\\n    function getCdpInfo(\\r\\n        uint _cdpId\\r\\n    )\\r\\n        external\\r\\n        view\\r\\n        returns (\\r\\n            address urn,\\r\\n            address owner,\\r\\n            address userAddr,\\r\\n            bytes32 ilk,\\r\\n            uint collateral,\\r\\n            uint debt\\r\\n        )\\r\\n    {\\r\\n        ilk = manager.ilks(_cdpId);\\r\\n        urn = manager.urns(_cdpId);\\r\\n        owner = manager.owns(_cdpId);\\r\\n        userAddr = address(0);\\r\\n        try this._getProxyOwner(owner) returns (address user) {\\r\\n            userAddr = user;\\r\\n        } catch {}\\r\\n\\r\\n        (collateral, debt) = vat.urns(ilk, urn);\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xb2619692c30e98375b1575b3aef0b633c1b2024658da1c23b797cb6756ed4eb8\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080604052735ef30b9986345249bc32d8928b7ee64de9435e396000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055507335d1b3f3d7966a1dfe207aa4514c12a259a0492b600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055503480156100b957600080fd5b50610866806100c96000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80634042d4ad1461004657806376da76481461007b578063b3a4e1ae14610099575b600080fd5b610060600480360381019061005b9190610531565b6100c9565b604051610072969594939291906105c7565b60405180910390f35b6100836103d5565b6040516100909190610628565b60405180910390f35b6100b360048036038101906100ae919061066f565b610479565b6040516100c09190610628565b60405180910390f35b60008060008060008060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632c2cb9fd886040518263ffffffff1660e01b815260040161012b919061069c565b602060405180830381865afa158015610148573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061016c91906106e3565b925060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632726b073886040518263ffffffff1660e01b81526004016101c7919061069c565b602060405180830381865afa1580156101e4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102089190610725565b955060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16638161b120886040518263ffffffff1660e01b8152600401610263919061069c565b602060405180830381865afa158015610280573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102a49190610725565b9450600093503073ffffffffffffffffffffffffffffffffffffffff1663b3a4e1ae866040518263ffffffff1660e01b81526004016102e39190610628565b602060405180830381865afa92505050801561031d57506040513d601f19601f8201168201806040525081019061031a9190610725565b60015b1561032757809450505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632424be5c84886040518363ffffffff1660e01b8152600401610384929190610752565b6040805180830381865afa1580156103a0573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103c49190610790565b809250819350505091939550919395565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16638161b12061271f6040518263ffffffff1660e01b81526004016104339190610815565b602060405180830381865afa158015610450573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104749190610725565b905090565b6000808290508073ffffffffffffffffffffffffffffffffffffffff16638da5cb5b6040518163ffffffff1660e01b8152600401602060405180830381865afa1580156104ca573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104ee9190610725565b915050919050565b600080fd5b6000819050919050565b61050e816104fb565b811461051957600080fd5b50565b60008135905061052b81610505565b92915050565b600060208284031215610547576105466104f6565b5b60006105558482850161051c565b91505092915050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006105898261055e565b9050919050565b6105998161057e565b82525050565b6000819050919050565b6105b28161059f565b82525050565b6105c1816104fb565b82525050565b600060c0820190506105dc6000830189610590565b6105e96020830188610590565b6105f66040830187610590565b61060360608301866105a9565b61061060808301856105b8565b61061d60a08301846105b8565b979650505050505050565b600060208201905061063d6000830184610590565b92915050565b61064c8161057e565b811461065757600080fd5b50565b60008135905061066981610643565b92915050565b600060208284031215610685576106846104f6565b5b60006106938482850161065a565b91505092915050565b60006020820190506106b160008301846105b8565b92915050565b6106c08161059f565b81146106cb57600080fd5b50565b6000815190506106dd816106b7565b92915050565b6000602082840312156106f9576106f86104f6565b5b6000610707848285016106ce565b91505092915050565b60008151905061071f81610643565b92915050565b60006020828403121561073b5761073a6104f6565b5b600061074984828501610710565b91505092915050565b600060408201905061076760008301856105a9565b6107746020830184610590565b9392505050565b60008151905061078a81610505565b92915050565b600080604083850312156107a7576107a66104f6565b5b60006107b58582860161077b565b92505060206107c68582860161077b565b9150509250929050565b6000819050919050565b6000819050919050565b60006107ff6107fa6107f5846107d0565b6107da565b6104fb565b9050919050565b61080f816107e4565b82525050565b600060208201905061082a6000830184610806565b9291505056fea2646970667358221220f305b874f4aa67c12dff0cdfcb41ddaadee65ca589fa5195a244405fed35e1ab64736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80634042d4ad1461004657806376da76481461007b578063b3a4e1ae14610099575b600080fd5b610060600480360381019061005b9190610531565b6100c9565b604051610072969594939291906105c7565b60405180910390f35b6100836103d5565b6040516100909190610628565b60405180910390f35b6100b360048036038101906100ae919061066f565b610479565b6040516100c09190610628565b60405180910390f35b60008060008060008060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632c2cb9fd886040518263ffffffff1660e01b815260040161012b919061069c565b602060405180830381865afa158015610148573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061016c91906106e3565b925060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632726b073886040518263ffffffff1660e01b81526004016101c7919061069c565b602060405180830381865afa1580156101e4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102089190610725565b955060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16638161b120886040518263ffffffff1660e01b8152600401610263919061069c565b602060405180830381865afa158015610280573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102a49190610725565b9450600093503073ffffffffffffffffffffffffffffffffffffffff1663b3a4e1ae866040518263ffffffff1660e01b81526004016102e39190610628565b602060405180830381865afa92505050801561031d57506040513d601f19601f8201168201806040525081019061031a9190610725565b60015b1561032757809450505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16632424be5c84886040518363ffffffff1660e01b8152600401610384929190610752565b6040805180830381865afa1580156103a0573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906103c49190610790565b809250819350505091939550919395565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16638161b12061271f6040518263ffffffff1660e01b81526004016104339190610815565b602060405180830381865afa158015610450573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104749190610725565b905090565b6000808290508073ffffffffffffffffffffffffffffffffffffffff16638da5cb5b6040518163ffffffff1660e01b8152600401602060405180830381865afa1580156104ca573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906104ee9190610725565b915050919050565b600080fd5b6000819050919050565b61050e816104fb565b811461051957600080fd5b50565b60008135905061052b81610505565b92915050565b600060208284031215610547576105466104f6565b5b60006105558482850161051c565b91505092915050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b60006105898261055e565b9050919050565b6105998161057e565b82525050565b6000819050919050565b6105b28161059f565b82525050565b6105c1816104fb565b82525050565b600060c0820190506105dc6000830189610590565b6105e96020830188610590565b6105f66040830187610590565b61060360608301866105a9565b61061060808301856105b8565b61061d60a08301846105b8565b979650505050505050565b600060208201905061063d6000830184610590565b92915050565b61064c8161057e565b811461065757600080fd5b50565b60008135905061066981610643565b92915050565b600060208284031215610685576106846104f6565b5b60006106938482850161065a565b91505092915050565b60006020820190506106b160008301846105b8565b92915050565b6106c08161059f565b81146106cb57600080fd5b50565b6000815190506106dd816106b7565b92915050565b6000602082840312156106f9576106f86104f6565b5b6000610707848285016106ce565b91505092915050565b60008151905061071f81610643565b92915050565b60006020828403121561073b5761073a6104f6565b5b600061074984828501610710565b91505092915050565b600060408201905061076760008301856105a9565b6107746020830184610590565b9392505050565b60008151905061078a81610505565b92915050565b600080604083850312156107a7576107a66104f6565b5b60006107b58582860161077b565b92505060206107c68582860161077b565b9150509250929050565b6000819050919050565b6000819050919050565b60006107ff6107fa6107f5846107d0565b6107da565b6104fb565b9050919050565b61080f816107e4565b82525050565b600060208201905061082a6000830184610806565b9291505056fea2646970667358221220f305b874f4aa67c12dff0cdfcb41ddaadee65ca589fa5195a244405fed35e1ab64736f6c63430008130033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 365,
+        "contract": "contracts/CDPView.sol:VaultInfo",
+        "label": "manager",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(Manager)351"
+      },
+      {
+        "astId": 371,
+        "contract": "contracts/CDPView.sol:VaultInfo",
+        "label": "vat",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_contract(Vat)329"
+      }
+    ],
+    "types": {
+      "t_contract(Manager)351": {
+        "encoding": "inplace",
+        "label": "contract Manager",
+        "numberOfBytes": "20"
+      },
+      "t_contract(Vat)329": {
+        "encoding": "inplace",
+        "label": "contract Vat",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}

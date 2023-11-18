@@ -1,7 +1,7 @@
 {
-  "name": "decenter-solidity-challenge",
+  "name": "Decenter Solidity Challenge",
   "version": "1.0.0",
-  "description": "Decenter Bonus Challenge",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,14 +9,13 @@
   "author": "Aleksa",
   "license": "ISC",
   "devDependencies": {
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.9",
-    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "hardhat": "^2.19.1"
-  },
-  "dependencies": {
-    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.4.1",
-    "dotenv": "^16.3.1",
-    "ethers": "^6.8.1",
-    "hardhat-deploy": "^0.11.43"
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+    "@nomiclabs/hardhat-etherscan": "^3.1.2",
+    "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.1",
+    "ethers": "^5.5.4",
+    "hardhat": "^2.10.2",
+    "hardhat-deploy": "^0.11.12"
   }
 }

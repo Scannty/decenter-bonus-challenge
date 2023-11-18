@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\aleks\\Documents\\Coding\\Blockchain\\decenter-solidity-challenge\\contracts\\CDPView.sol": {
-      "lastModificationDate": 1700251222141,
-      "contentHash": "9758c5b7c7ae594daaffad13b296f845",
+      "lastModificationDate": 1700312049444,
+      "contentHash": "b66915cb086364980e87d1a56f467562",
       "sourceName": "contracts/CDPView.sol",
       "solcConfig": {
         "version": "0.8.19",
