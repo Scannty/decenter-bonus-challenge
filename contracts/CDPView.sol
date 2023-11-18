@@ -1,4 +1,8 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
+
+import "./DSMath.sol";
 
 /* Interfaces */
 interface CDPManager {
@@ -21,7 +25,7 @@ interface Vat {
     ) external view returns (uint256, uint256, uint256, uint256, uint256);
 }
 
-contract CDPView {
+contract CDPView is DSMath {
     struct Information {
         bytes32 ilk;
         address urn;
@@ -59,7 +63,7 @@ contract CDPView {
 
         // Get the rate MCD Vat contract and calculate the adjusted debt
         (, uint256 rate, , , ) = vat.ilks(ilk);
-        uint256 adjustedDebt = rate * debt;
+        uint256 adjustedDebt = rmul(rate, debt);
 
         // Store information in a struct and return it
         Information memory info = Information(

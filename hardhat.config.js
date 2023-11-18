@@ -10,8 +10,7 @@ module.exports = {
   networks: {
     hardhat: {
       forking: {
-        url: process.env.INFURA_KEY,
-        blockNumber: 18000000
+        url: process.env.INFURA_KEY
       },
       network_id: 1,
     }

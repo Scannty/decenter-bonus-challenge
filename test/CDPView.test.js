@@ -1,11 +1,19 @@
 const { assert, expect } = require('chai')
 const { deployments, ethers } = require('hardhat')
 const { CDP_MANAGER_ADDRESS, VAT_ADDRESS } = require('../constants')
-const cdpAbi = require('../cdpAbi.json')
+
+/* 
+    Test data from DeFi Explore for ID=10015, could have fetched it
+    myeslf but it was easier this way. 
+*/
+const test_id = 10015
+const collateral = 'ETH-A'
+const adjustedDebt = ethers.utils.parseEther('27.16')
+const owner = '0x960bb2943bec69737e3b57205193fdc426aee8c3'
+const delta = ethers.utils.parseEther('0.1')
 
 describe('CDP View contract unit test', () => {
-    let cdpView, vatMock, managerMock, deployer
-    let test_id = 10015
+    let cdpView, deployer
 
     beforeEach(async () => {
         const accounts = await ethers.getSigners()
@@ -25,20 +33,14 @@ describe('CDP View contract unit test', () => {
     })
 
     describe('getCdpInfo', () => {
-        /* it('ssssss', async () => {
-            const tx = await cdpView.getCdpInfo(test_id)
-            console.log(tx)
-            assert(true)
-        }) */
-
         it('correctly fetches the variables from CDP manager', async () => {
-            try {
-                const res = await cdpView.getCdpInfo(test_id)
-                console.log(res)
-            } catch (error) {
-                console.log(error)
-            }
-            assert(true)
+            const res = await cdpView.getCdpInfo(test_id)
+            const decodedIlk = ethers.utils.parseBytes32String(res.ilk)
+
+            assert.equal(decodedIlk, collateral)
+            assert.equal((res.userAddr).toLowerCase(), owner)
+            expect(res.adjustedDebt)
+                .to.be.closeTo(adjustedDebt, delta)
         })
     })
 })

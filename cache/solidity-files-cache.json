@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\aleks\\Documents\\Coding\\Blockchain\\decenter-solidity-challenge\\contracts\\CDPView.sol": {
-      "lastModificationDate": 1700312049444,
-      "contentHash": "b66915cb086364980e87d1a56f467562",
+      "lastModificationDate": 1700315472863,
+      "contentHash": "6cb4f27e9d0288ecec5db3c3a9c3288d",
       "sourceName": "contracts/CDPView.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -31,11 +31,13 @@
             }
           },
           "metadata": {
-            "useLiteralContent": true
+            "useLiteralContent": false
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./DSMath.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
@@ -46,12 +48,12 @@
         "Vat"
       ]
     },
-    "C:\\Users\\aleks\\Documents\\Coding\\Blockchain\\decenter-solidity-challenge\\contracts\\mocks\\CDPManagerMock.sol": {
-      "lastModificationDate": 1700251927857,
-      "contentHash": "039145815a195356ec32630968f43bba",
-      "sourceName": "contracts/mocks/CDPManagerMock.sol",
+    "C:\\Users\\aleks\\Documents\\Coding\\Blockchain\\decenter-solidity-challenge\\contracts\\DSMath.sol": {
+      "lastModificationDate": 1700315547215,
+      "contentHash": "582d1ac92a5c3b2f1527143b2b019654",
+      "sourceName": "contracts/DSMath.sol",
       "solcConfig": {
-        "version": "0.5.12",
+        "version": "0.8.19",
         "settings": {
           "optimizer": {
             "enabled": false,
@@ -76,61 +78,16 @@
             }
           },
           "metadata": {
-            "useLiteralContent": true
+            "useLiteralContent": false
           }
         }
       },
       "imports": [],
       "versionPragmas": [
-        "=0.5.12"
+        "^0.8.0"
       ],
       "artifacts": [
-        "CDPManagerMock",
-        "LibNote",
-        "UrnHandler",
-        "VatLike"
-      ]
-    },
-    "C:\\Users\\aleks\\Documents\\Coding\\Blockchain\\decenter-solidity-challenge\\contracts\\mocks\\VatMock.sol": {
-      "lastModificationDate": 1700251724668,
-      "contentHash": "d4ea95a022734c0b2a76dbd5587dffcd",
-      "sourceName": "contracts/mocks/VatMock.sol",
-      "solcConfig": {
-        "version": "0.5.12",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "devdoc",
-                "userdoc",
-                "storageLayout",
-                "evm.gasEstimates"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          },
-          "metadata": {
-            "useLiteralContent": true
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "=0.5.12"
-      ],
-      "artifacts": [
-        "VatMock"
+        "DSMath"
       ]
     }
   }
